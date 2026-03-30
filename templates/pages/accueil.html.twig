@@ -14,6 +14,7 @@
     <p>
         Voici les <strong>deux dernières formations</strong> ajoutées au catalogue :
         <table class="table">
+            <caption>tableau des deux dernières formations publiées</caption>
             <tr>
                 {% for formation in formations %}
                     <td>
@@ -23,8 +24,8 @@
                                 {% if formation.picture %}
                                     <a href="{{ path('formations.showone', {id:formation.id}) }}">
                                     <img src="{{ formation.picture }}" 
-                                         class="card-img-top" style="width:100%;height:auto;">
-                                    </a>    
+                                         class="card-img-top" style="width:100%;height:auto;" alt="">
+                                    </a>
                                 {% endif %}
                             </div>
                             <div class="col">
@@ -37,12 +38,11 @@
                                 {% for categorie in formation.categories %}
                                     {{ categorie.name }}&nbsp;
                                 {% endfor %}
-                            </div>    
-                        </div>                    
-                {% endfor %}    
+                            </div>
+                        </div>
+                {% endfor %}
             </tr>
-
-        </table>        
+        </table>
     </p>
 {% endblock %}
 

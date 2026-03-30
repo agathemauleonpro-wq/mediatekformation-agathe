@@ -15,13 +15,23 @@ class CategorieRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Categorie::class);
     }
-
+    
+    /**
+     * ajout d'une catégorie
+     * @param Categorie $entity
+     * @return void
+     */
     public function add(Categorie $entity): void
     {
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
     }
-
+    
+    /**
+     * supprimer une catégorie
+     * @param Categorie $entity
+     * @return void
+     */
     public function remove(Categorie $entity): void
     {
         $this->getEntityManager()->remove($entity);
@@ -33,15 +43,16 @@ class CategorieRepository extends ServiceEntityRepository
      * @param type $idPlaylist
      * @return array
      */
-    public function findAllForOnePlaylist($idPlaylist): array{
+    public function findAllForOnePlaylist($idPlaylist): array
+    {
         return $this->createQueryBuilder('c')
                 ->join('c.formations', 'f')
                 ->join('f.playlist', 'p')
                 ->where('p.id=:id')
                 ->setParameter('id', $idPlaylist)
-                ->orderBy('c.name', 'ASC')   
+                ->orderBy('c.name', 'ASC')
                 ->getQuery()
-                ->getResult();        
-    }  
+                ->getResult();
+    }
     
 }
